@@ -49,7 +49,12 @@ class QuantumRandomNumberGenerator:
         random_int, _ = self.generate_random_number(num_bits)
         return random_int / max_value
     
-    def return_random_numbers(self):
-        random_int, bits = self.generate_random_number(num_bits=8)
-        random_float = self.generate_random_float(num_bits=16)
-        return random_int, random_float, bits
+    def return_random_numbers(self, only_integer=False):
+        if only_integer:
+            print("Generating only random integer...")
+            random_int, bits = self.generate_random_number(num_bits=8)
+            return random_int, bits
+        else:
+            random_int, bits = self.generate_random_number(num_bits=8)
+            random_float = self.generate_random_float(num_bits=16)
+            return random_int, random_float, bits
