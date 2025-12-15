@@ -7,6 +7,7 @@ class QuantumRandomNumberGenerator:
     load_dotenv()
 
     def __init__(self):
+        backend_name = os.getenv("BACKEND")
         self.service = QiskitRuntimeService(
             token=os.getenv("TOKEN"),
             instance=os.getenv("INSTANCE"),
@@ -14,7 +15,7 @@ class QuantumRandomNumberGenerator:
             channel="ibm_quantum_platform"
         )
         try:
-            self.backend = self.service.backend('ibm_brisbane')
+            self.backend = self.service.backend(backend_name)
             self.is_real_hardware = True
             print(f"Connected on quantum backend")
         except:
